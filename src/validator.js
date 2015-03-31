@@ -168,7 +168,7 @@ Validator.prototype = {
 		 * Compares the size of strings or the value of numbers if there is a truthy value
 		 */
 		min: function(val, req) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			if (typeof val === 'number') {
 				return val >= req ? true : false;
@@ -181,7 +181,7 @@ Validator.prototype = {
 		 * Compares the size of strings or the value of numbers if there is a truthy value
 		 */
 		max: function(val, req) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			if (typeof val === 'number') {
 				return val <= req ? true : false;
@@ -193,7 +193,7 @@ Validator.prototype = {
 		email: function(val) {
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-			if (val === undefined || val === '') {
+			if (val === undefined || val === '' || val === null) {
 				return true;
 			}
 
@@ -203,7 +203,7 @@ Validator.prototype = {
 		numeric: function(val) {
 			var num;
 
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			num = Number(val); // tries to convert value to a number. useful if value is coming from form element
 
@@ -215,24 +215,24 @@ Validator.prototype = {
 		},
 
 		url: function(url) {
-			if (url === undefined || url === '') { return true; }
+			if (url === undefined || url === '' || url === null) { return true; }
 
 			return (/^https?:\/\/\S+/).test(url);
 		},
 
 		alpha: function(val) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			return (/^[a-zA-Z]+$/).test(val);
 		},
 
 		alpha_dash: function(val) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 			return (/^[a-zA-Z0-9_\-]+$/).test(val);
 		},
 
 		alpha_num: function(val) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			return (/^[a-zA-Z0-9]+$/).test(val);
 		},
@@ -318,7 +318,7 @@ Validator.prototype = {
 		},
 
 		integer: function(val) {
-			if (val === undefined || val === '') { return true; }
+			if (val === undefined || val === '' || val === null) { return true; }
 
 			val = String(val);
 
@@ -337,14 +337,14 @@ Validator.prototype = {
 			return false;
 		},
 
-    regex: function(val, req) {
-    	var mod = /[g|i|m]{1,3}$/;
-			var flag = req.match(mod);
-			flag = flag ? flag[0] : "i";
-			req = req.replace(mod,"").slice(1,-1);
-			req = new RegExp(req,flag);
-      return !!val.match(req);
-    }
+        regex: function(val, req) {
+    	    var mod = /[g|i|m]{1,3}$/;
+		    var flag = req.match(mod);
+		    flag = flag ? flag[0] : "i";
+		    req = req.replace(mod,"").slice(1,-1);
+		    req = new RegExp(req,flag);
+            return !!val.match(req);
+        }
 	}
 };
 
