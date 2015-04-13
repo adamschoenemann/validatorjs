@@ -51,10 +51,16 @@ describe('integer validation rule', function() {
 		var validator = new Validator({}, { age: 'integer' });
 		expect(validator.fails()).toBeFalsy();
 		expect(validator.passes()).toBeTruthy();
-	});	
+	});
 
 	it('should pass with an integer value', function() {
 		var validator = new Validator({ age: 18 }, { age: 'integer' });
+		expect(validator.fails()).toBeFalsy();
+		expect(validator.passes()).toBeTruthy();
+	});
+
+	it('should pass with a unsigned integer value', function () {
+		var validator = new Validator({ balance: -200 }, { balance: 'integer' });
 		expect(validator.fails()).toBeFalsy();
 		expect(validator.passes()).toBeTruthy();
 	});
