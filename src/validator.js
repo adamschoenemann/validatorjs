@@ -319,14 +319,9 @@ Validator.prototype = {
 
 		integer: function(val) {
 			if (val === undefined || val === '' || val === null) { return true; }
-
 			val = String(val);
+			return String(parseInt(val)) === String(val);
 
-			if ( (/^\d+$/).test(val) ) {
-				return true;
-			} else {
-				return false;
-			}
 		},
 
 		digits: function(val, req) {

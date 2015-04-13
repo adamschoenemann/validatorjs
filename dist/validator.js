@@ -1,4 +1,4 @@
-/*! validatorjs - v1.3.2 - https://github.com/skaterdav85/validatorjs - 2015-03-31 */
+/*! validatorjs - v1.3.2 - https://github.com/skaterdav85/validatorjs - 2015-04-13 */
 (function() {
 
 var messages = {
@@ -460,14 +460,9 @@ Validator.prototype = {
 
 		integer: function(val) {
 			if (val === undefined || val === '' || val === null) { return true; }
-
 			val = String(val);
+			return String(parseInt(val)) === String(val);
 
-			if ( (/^\d+$/).test(val) ) {
-				return true;
-			} else {
-				return false;
-			}
 		},
 
 		digits: function(val, req) {
