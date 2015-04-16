@@ -332,8 +332,11 @@ Validator.prototype = {
 			return false;
 		},
 
-		digits_between: function(val, min, max){
-			return (this.validate.numeric(val) && String(val).length >= 3 && String(val).length <= max);
+		digits_between: function(val, req){
+			var splits = req.split(','),
+				min = parseInt(splits[0]), max = parseInt(splits[1]),
+				strVal = String(val);
+			return (this.validate.numeric(val) && strVal.length >= 3 && strVal.length <= max);
 		},
 
         regex: function(val, req) {

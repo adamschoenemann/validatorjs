@@ -1,4 +1,4 @@
-/*! validatorjs - v1.3.2 - https://github.com/skaterdav85/validatorjs - 2015-04-16 */
+/*! validatorjs - v1.3.3 - https://github.com/skaterdav85/validatorjs - 2015-04-16 */
 (function() {
 
 var messages = {
@@ -10,6 +10,7 @@ var messages = {
 	email: 'The :attribute format is invalid.',
 	def: 'The :attribute attribute has errors.',
 	digits: 'The :attribute must be :digits digits.',
+	digits_between: 'The :attribute must be between :digits_between',
 	different: 'The :attribute and :different must be different.',
 	'in': 'The selected :attribute is invalid.',
 	integer: 'The :attribute must be an integer.',
@@ -473,8 +474,11 @@ Validator.prototype = {
 			return false;
 		},
 
-		digits_between: function(val, min, max){
-			return (this.validate.numeric(val) && String(val).length >= 3 && String(val).length <= max);
+		digits_between: function(val, req){
+			var splits = req.split(','),
+				min = parseInt(splits[0]), max = parseInt(splits[1]),
+				strVal = String(val);
+			return (this.validate.numeric(val) && strVal.length >= 3 && strVal.length <= max);
 		},
 
         regex: function(val, req) {
