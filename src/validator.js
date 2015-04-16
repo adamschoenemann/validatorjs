@@ -332,6 +332,10 @@ Validator.prototype = {
 			return false;
 		},
 
+		digits_between: function(val, min, max){
+			return (this.validate.numeric(val) && String(val).length >= 3 && String(val).length <= max);
+		},
+
         regex: function(val, req) {
     	    var mod = /[g|i|m]{1,3}$/;
 		    var flag = req.match(mod);

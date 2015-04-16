@@ -1,4 +1,4 @@
-/*! validatorjs - v1.3.2 - https://github.com/skaterdav85/validatorjs - 2015-04-13 */
+/*! validatorjs - v1.3.2 - https://github.com/skaterdav85/validatorjs - 2015-04-16 */
 (function() {
 
 var messages = {
@@ -471,6 +471,10 @@ Validator.prototype = {
 			}
 
 			return false;
+		},
+
+		digits_between: function(val, min, max){
+			return (this.validate.numeric(val) && String(val).length >= 3 && String(val).length <= max);
 		},
 
         regex: function(val, req) {
